@@ -2,38 +2,72 @@
 
 using namespace std;
 
+template<class T>
 class QueueNode {
 public:
-	int data;
+	T data;
 	// Bu deðiþken bir pointer deðiþkendir. QueueNode sýnýfýnýn adresini saklar.
 	// & operatörü ile de adres alýnabilir.
-	QueueNode* next;
-	QueueNode(const int& data = 0,QueueNode* next = NULL) : data(data),next(next){}
+	QueueNode<T>* next;
+	QueueNode(const T& data = 0,QueueNode<T>* next = NULL) : data(data),next(next){}
 };
+template<class T>
 class Queue {
-	QueueNode* root;
-	QueueNode* tail;
+	QueueNode<T>* root;
+	QueueNode<T>* tail;
 	int length;
+	void makeEmpty() {
+		while (!isEmpty())
+			dequeue();
+	}
 	public:
 		Queue() : root(NULL),tail(NULL), length(0) {}
+		~Queue() { makeEmpty(); }
+		Queue(const Queue<T>& rhs):Queue<T>() { *this = rhs; }
+		Queue<T>& operator=(const Queue<T>& rhs) { return assign(rhs); }
+		Queue<T>& assign(const Queue<T>& rhs) {
+			makeEmpty();
+			QueueNode<T>* tmp = rhs.root;
+			while (tmp != NULL)
+			{
+				enqueue(tmp->data);
+				tmp = tmp->next;
+			}
+			return *this;
+		}
 		bool isEmpty()const { return root == NULL; }
 		// Kuyruða kabul etme fonksiyonu
-		void enqueue(const int& value) {
+		void enqueue(const T& value) {
 			if (isEmpty()) {
-				root = new QueueNode(value);
+				root = new QueueNode<T>(value);
 				tail = root;
 			}
 			else {
-				tail->next = new QueueNode(value);
+				tail->next = new QueueNode<T>(value);
 				tail = tail->next;
 			};
 			length++;
+		}
+		T front()const {
+			if (isEmpty()) {
+				throw "Error : Queue::front() for queue is empty";
+			}
+			return root->data;
+
+		}
+		T back() const {
+			if (isEmpty()) {
+				throw "Error : Queue::back() for queue is empty";
+			
+			}
+
+			return tail->data;
 		}
 		void dequeue() {
 			if (isEmpty()) {
 				throw "Error : Queue::dequeue() for queue is empty";
 			}
-			QueueNode* tmp = root;
+			QueueNode<T>* tmp = root;
 			if(root == tail){
 				tail = tmp->next;
 			}
@@ -42,7 +76,7 @@ class Queue {
 			length--;
 		}
 		void print()const {
-			QueueNode* tmp = root;
+			QueueNode<T>* tmp = root;
 			while (tmp != NULL) {
 				cout << tmp->data << " ";
 				tmp = tmp->next;
@@ -51,34 +85,32 @@ class Queue {
 		}
 		int size()const {
 			return length;
-			/*
-			QueueNode* tmp = root;
-			int counter = 0;
-			while (tmp != NULL) {
-				counter++;
-				tmp = tmp->next;
-			}
-			return counter;
-			*/
 		}
 
 };
+
+class Musteri {
+	string isim;
+public:
+	Musteri(const string& isim):isim(isim){}
+	friend ostream& operator<<(ostream& out, Musteri& m) {
+		out << m.isim;
+		return out;
+	}
+};
 int main() {
-	Queue q;
+	Queue<Musteri> q;
 	cout << q.isEmpty() << endl;
-	q.enqueue(10);
+	q.enqueue(Musteri("Kemal"));
+	q.enqueue(Musteri("Tekin"));
+	q.enqueue(Musteri("Cihat"));
 	cout << q.isEmpty() << endl;
 	q.print();
-	q.enqueue(3);
-	q.print();
+	Musteri islemyapilacak = q.front();
+	cout << islemyapilacak << endl;
 	q.dequeue();
-	cout << q.isEmpty() << endl;
-	q.print();
-	q.dequeue();
-	cout << q.isEmpty() << endl;
-	q.enqueue(50);
-	cout << q.isEmpty() << endl;
+	islemyapilacak = q.front();
 	q.print();
 
-	return 0;
+	cout << islemyapilacak << endl;
 }
