@@ -1,0 +1,7 @@
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\bin\Debug\KitapKurdu.exe.config
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\bin\Debug\KitapKurdu.exe
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\bin\Debug\KitapKurdu.pdb
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\obj\Debug\KitapKurdu.csproj.AssemblyReference.cache
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\obj\Debug\KitapKurdu.csproj.CoreCompileInputs.cache
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\obj\Debug\KitapKurdu.exe
+C:\Users\mehme\OneDrive\Belgeler\GitHub\Queue-Veri-Yapisi\KitapKurdu\KitapKurdu\obj\Debug\KitapKurdu.pdb
